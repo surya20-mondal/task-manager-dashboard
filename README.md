@@ -1,264 +1,172 @@
-# Task Manager Dashboard (MERN + JWT)
+📝 Task Manager Dashboard
 
-A beginner-friendly full-stack project with:
-- **Frontend:** React + Bootstrap + Axios
-- **Backend:** Node.js + Express + MongoDB + JWT + bcrypt
+A full-stack Task Manager Dashboard application built with React, Node.js, Express, and MongoDB Atlas.
+This project demonstrates authentication, protected routes, and CRUD operations on tasks, built as part of a frontend/full-stack internship assignment.
 
----
+🚀 Features
 
-## 🚀 Quickest way to run this project
+🔐 User Authentication (Register / Login / Logout)
 
-If you already cloned this repo and want the fastest path:
+🛡️ JWT-based protected routes
 
-```bash
-# from project root
+🔒 Password hashing with bcrypt
+
+👤 Fetch and display user profile
+
+✅ Create, Read, Update, Delete (CRUD) tasks
+
+🔍 Search and filter tasks
+
+📱 Responsive UI
+
+⚙️ Clean and scalable project structure
+
+🛠️ Tech Stack
+Frontend
+
+React (Vite)
+
+Axios
+
+React Router
+
+CSS / Tailwind (or custom CSS)
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB (MongoDB Atlas)
+
+Mongoose
+
+JWT (jsonwebtoken)
+
+bcrypt
+
+📁 Project Structure
+task-manager-dashboard/
+  backend/
+    config/
+    controllers/
+    middleware/
+    models/
+    routes/
+    server.js
+    .env.example
+  frontend/
+    src/
+      components/
+      context/
+      pages/
+      services/
+      App.jsx
+      main.jsx
+  docs/
+  README.md
+
+⚙️ Setup Instructions
+1️⃣ Clone the repository
+git clone https://github.com/surya20-mondal/task-manager-dashboard.git
+cd task-manager-dashboard
+
+2️⃣ Backend Setup
+cd backend
 npm install
-npm run install:all
-cp backend/.env.example backend/.env
-# edit backend/.env and set MONGO_URI + JWT_SECRET
+
+
+Create a .env file inside backend/:
+
+PORT=5000
+MONGO_URI=mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxx.mongodb.net/task_manager_dashboard?retryWrites=true&w=majority
+JWT_SECRET=your_long_random_secret
+JWT_EXPIRES_IN=1d
+
+
+Replace USERNAME and PASSWORD with your MongoDB Atlas database user credentials.
+
+Start the backend server:
+
 npm run dev
-```
 
-Then open:
-- Frontend: `http://localhost:5173`
-- Backend health: `http://localhost:5000`
 
-> If `npm run dev` fails with `concurrently: command not found`, run `npm install` in the root first.
+You should see:
 
----
+MongoDB connected
+Server running on port 5000
 
-## 1) Start from absolute zero (setup)
 
-## Install tools first
-1. **Node.js (LTS)**
-   - Download: https://nodejs.org
-   - Verify:
-     ```bash
-     node -v
-     npm -v
-     ```
+Test in browser:
 
-2. **MongoDB**
-   - Option A (local): install MongoDB Community Server.
-   - Option B (cloud): use MongoDB Atlas and copy connection string.
+http://localhost:5000
 
-3. **Postman**
-   - Download: https://www.postman.com/downloads/
+3️⃣ Frontend Setup
 
-> Common error warning: if `node -v` fails, restart your terminal after installation.
+Open a new terminal:
 
----
+cd frontend
+npm install
+npm run dev
 
-## 2) Project structure
 
-```text
-backend/
-  config/
-    db.js
-  controllers/
-    authController.js
-    taskController.js
-  middleware/
-    authMiddleware.js
-  models/
-    Task.js
-    User.js
-  routes/
-    authRoutes.js
-    taskRoutes.js
-  .env.example
-  package.json
-  server.js
+Frontend will run on:
 
-frontend/
-  src/
-    components/
-      ProtectedRoute.jsx
-      TaskForm.jsx
-      TaskList.jsx
-    context/
-      AuthContext.jsx
-    pages/
-      DashboardPage.jsx
-      LoginPage.jsx
-      RegisterPage.jsx
-    services/
-      api.js
-    App.jsx
-    main.jsx
-    styles.css
-  index.html
-  package.json
-  vite.config.js
-```
+http://localhost:5173
 
----
+🔗 API Endpoints
+Auth
 
-## 3) Backend setup
+POST /api/auth/register → Register a new user
 
-1. Go to backend and install packages:
-   ```bash
-   cd backend
-   npm install
-   ```
+POST /api/auth/login → Login user
 
-2. Create env file:
-   ```bash
-   cp .env.example .env
-   ```
+GET /api/auth/profile → Get logged-in user profile (protected)
 
-3. Update `.env` values:
-   - `MONGO_URI`
-   - `JWT_SECRET`
+Tasks
 
-4. Run server:
-   ```bash
-   npm run dev
-   ```
+GET /api/tasks → Get all tasks (protected)
 
-Server starts on `http://localhost:5000`.
+POST /api/tasks → Create a new task (protected)
 
-> Common error warning: `MONGO_URI` wrong means database connection fails immediately.
+PUT /api/tasks/:id → Update a task (protected)
 
----
+DELETE /api/tasks/:id → Delete a task (protected)
 
-## 4) API routes summary
+🔐 Security
 
-### Auth routes
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/auth/profile` (protected)
+Passwords are hashed using bcrypt
 
-### Task routes (all protected)
-- `POST /api/tasks`
-- `GET /api/tasks?search=&status=`
-- `PUT /api/tasks/:id`
-- `DELETE /api/tasks/:id`
+Authentication is handled using JWT
 
----
+Protected routes require a valid token
 
-## 5) Postman testing guide
+Token is sent using Authorization: Bearer <token> header
 
-### Step A: Register
-- Method: `POST`
-- URL: `http://localhost:5000/api/auth/register`
-- Body JSON:
-```json
-{
-  "name": "Alice",
-  "email": "alice@example.com",
-  "password": "123456"
-}
-```
-- Copy the `token` from response.
+📈 Scalability & Production Improvements
 
-### Step B: Login
-- Method: `POST`
-- URL: `http://localhost:5000/api/auth/login`
-- Body JSON:
-```json
-{
-  "email": "alice@example.com",
-  "password": "123456"
-}
-```
+Add refresh tokens and token rotation
 
-### Step C: Use protected routes
-- Add Header in Postman:
-  - Key: `Authorization`
-  - Value: `Bearer YOUR_TOKEN_HERE`
+Add role-based access control (admin/user)
 
-### Step D: Create task
-- `POST http://localhost:5000/api/tasks`
-```json
-{
-  "title": "Finish backend",
-  "description": "Build task CRUD endpoints",
-  "status": "pending"
-}
-```
+Add pagination and indexing for large datasets
 
-### Step E: Read/search/filter tasks
-- `GET http://localhost:5000/api/tasks`
-- `GET http://localhost:5000/api/tasks?search=backend`
-- `GET http://localhost:5000/api/tasks?status=completed`
+Add caching layer (Redis)
 
-### Step F: Update task
-- `PUT http://localhost:5000/api/tasks/<TASK_ID>`
-```json
-{
-  "status": "completed"
-}
-```
+Add rate limiting and request validation
 
-### Step G: Delete task
-- `DELETE http://localhost:5000/api/tasks/<TASK_ID>`
+Deploy backend (Render / AWS) and frontend (Vercel / Netlify)
 
----
+Add CI/CD pipeline
 
-## 6) Frontend setup
+👨‍💻 Author
 
-1. Open new terminal:
-   ```bash
-   cd frontend
-   npm install
-   ```
+Surya Mondal
+BCA Student | Aspiring Frontend / Full-Stack Developer
+GitHub: https://github.com/surya20-mondal
 
-2. Optional env file (`frontend/.env`):
-   ```env
-   VITE_API_URL=http://localhost:5000/api
-   ```
+📄 License
 
-3. Start frontend:
-   ```bash
-   npm run dev
-   ```
-
-Frontend runs on Vite default URL (usually `http://localhost:5173`).
-
----
-
-## 7) How frontend auth works
-
-- On login/register, backend sends JWT token.
-- Frontend stores token in `localStorage`.
-- Axios interceptor automatically adds token to headers.
-- Protected route checks user profile before showing dashboard.
-- Logout removes token and returns to login page.
-
----
-
-## 8) Security checklist used
-
-- Password hashing with `bcryptjs`
-- JWT auth middleware (`Bearer token`)
-- Input validation with `express-validator`
-- Route protection for dashboard and task APIs
-- Basic server-side error handling
-
----
-
-## 9) Common beginner errors + fixes
-
-1. **CORS error**
-   - Ensure backend uses `app.use(cors())`.
-2. **401 Invalid token**
-   - Token expired or missing `Bearer` prefix.
-3. **Validation failed**
-   - Check min password length and required fields.
-4. **Mongo connection failed**
-   - Check `MONGO_URI` format and DB server status.
-
----
-
-## 10) How this can scale in production
-
-- Use refresh tokens + secure HTTP-only cookies.
-- Add role-based authorization.
-- Add pagination for large task lists.
-- Use centralized logging (Winston + cloud logs).
-- Use Redis caching for frequent reads.
-- Use Docker + CI/CD pipeline.
-- Add test coverage (unit + integration + e2e).
-- Add rate limiting + helmet security middleware.
+This project is built for learning and internship assignment purposes.
 
