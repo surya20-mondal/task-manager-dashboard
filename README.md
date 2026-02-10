@@ -6,6 +6,27 @@ A beginner-friendly full-stack project with:
 
 ---
 
+## 🚀 Quickest way to run this project
+
+If you already cloned this repo and want the fastest path:
+
+```bash
+# from project root
+npm install
+npm run install:all
+cp backend/.env.example backend/.env
+# edit backend/.env and set MONGO_URI + JWT_SECRET
+npm run dev
+```
+
+Then open:
+- Frontend: `http://localhost:5173`
+- Backend health: `http://localhost:5000`
+
+> If `npm run dev` fails with `concurrently: command not found`, run `npm install` in the root first.
+
+---
+
 ## 1) Start from absolute zero (setup)
 
 ## Install tools first
