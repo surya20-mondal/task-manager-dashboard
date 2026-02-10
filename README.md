@@ -19,6 +19,11 @@ cp backend/.env.example backend/.env
 npm run dev
 ```
 
+Optional check:
+```bash
+npm run doctor
+```
+
 Then open:
 - Frontend: `http://localhost:5173`
 - Backend health: `http://localhost:5000`
@@ -193,6 +198,25 @@ Server starts on `http://localhost:5000`.
 
 ### Step G: Delete task
 - `DELETE http://localhost:5000/api/tasks/<TASK_ID>`
+
+---
+
+### If `npm run dev` still shows `concurrently` in terminal
+
+You are likely running an **older copy** of the project (very common with nested folders like `task-manager-dashboard-main\task-manager-dashboard-main`).
+
+Run this from the folder where you start commands:
+
+```bash
+npm run doctor
+```
+
+If doctor says root dev script is wrong, you are in stale/old files. Use latest project files, then run:
+
+```bash
+npm run install:all
+npm run dev
+```
 
 ---
 
