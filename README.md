@@ -23,7 +23,7 @@ Then open:
 - Frontend: `http://localhost:5173`
 - Backend health: `http://localhost:5000`
 
-> If `npm run dev` fails with `concurrently: command not found`, run `npm install` in the root first.
+> If you see `concurrently is not recognized`, pull latest code and run again. We removed that dependency and now use a built-in Node runner script.
 
 ---
 
@@ -193,6 +193,24 @@ Server starts on `http://localhost:5000`.
 
 ### Step G: Delete task
 - `DELETE http://localhost:5000/api/tasks/<TASK_ID>`
+
+---
+
+### If you see `'nodemon' is not recognized` or `'concurrently' is not recognized`
+
+This means dependencies/scripts were not available in your environment.
+
+Use this exact flow from project root:
+
+```bash
+npm run install:all
+cp backend/.env.example backend/.env
+npm run dev
+```
+
+If you are on **Windows PowerShell**, run these in the same folder where `package.json` exists.
+
+`backend` now uses Node's built-in watch mode, so nodemon is no longer required.
 
 ---
 
