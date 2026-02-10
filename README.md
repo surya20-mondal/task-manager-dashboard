@@ -1,7 +1,7 @@
 📝 Task Manager Dashboard
 
-A full-stack Task Manager Dashboard application built with React, Node.js, Express, and MongoDB Atlas.
-This project demonstrates authentication, protected routes, and CRUD operations on tasks, built as part of a frontend/full-stack internship assignment.
+A full-stack Task Manager Dashboard built with React, Node.js, Express, and MongoDB Atlas.
+This project demonstrates authentication, protected routes, and CRUD operations and was built as part of a frontend/full-stack internship assignment.
 
 🚀 Features
 
@@ -48,24 +48,24 @@ bcrypt
 
 📁 Project Structure
 task-manager-dashboard/
-  backend/
-    config/
-    controllers/
-    middleware/
-    models/
-    routes/
-    server.js
-    .env.example
-  frontend/
-    src/
-      components/
-      context/
-      pages/
-      services/
-      App.jsx
-      main.jsx
-  docs/
-  README.md
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── server.js
+│   └── .env.example
+├── frontend/
+│   └── src/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       ├── services/
+│       ├── App.jsx
+│       └── main.jsx
+├── docs/
+└── README.md
 
 ⚙️ Setup Instructions
 1️⃣ Clone the repository
@@ -85,7 +85,7 @@ JWT_SECRET=your_long_random_secret
 JWT_EXPIRES_IN=1d
 
 
-Replace USERNAME and PASSWORD with your MongoDB Atlas database user credentials.
+Replace USERNAME and PASSWORD with your MongoDB Atlas credentials.
 
 Start the backend server:
 
@@ -156,9 +156,9 @@ Add caching layer (Redis)
 
 Add rate limiting and request validation
 
-Deploy backend (Render / AWS) and frontend (Vercel / Netlify)
-
 Add CI/CD pipeline
+
+Improve logging and monitoring
 
 👨‍💻 Author
 
@@ -169,4 +169,3 @@ GitHub: https://github.com/surya20-mondal
 📄 License
 
 This project is built for learning and internship assignment purposes.
-
